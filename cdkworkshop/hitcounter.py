@@ -8,7 +8,7 @@ class HitCounter(core.Construct):
 
     @property
     def handler(self):
-        return self._handler
+        return self._handler 
 
     def __init__(self, scope: core.Construct, id: str, downstream: _lambda.IFunction, **kwargs):
         super().__init__(scope, id, **kwargs)
@@ -28,3 +28,5 @@ class HitCounter(core.Construct):
                 'HITS_TABLE_NAME': table.table_name,
             }
         )
+
+        table.grant_read_write_data(self.handler)
